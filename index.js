@@ -16,7 +16,7 @@ class LocalBitcoins extends EventEmitter {
 
     this.types = types
     this.hooks = hooks
-    
+
     this.LocalBitcoins = LocalBitcoins
   }
 
@@ -52,58 +52,47 @@ class LocalBitcoins extends EventEmitter {
 
   async getAccountInfo(username) {
     const res = await this._request(`/api/account_info/${username}/`)
-    const accountInfo = new types.AccountInfo()._deserialize(res.data)
-    this.emit('getAccountInfo', accountInfo)
-    return accountInfo
+    return new types.AccountInfo()._deserialize(res.data)
   }
 
   async getWallet() {
     const res = await this._request('/api/wallet/')
-    const wallet = new types.Wallet()._deserialize(res.data)
-    this.emit('getWallet', wallet)
-    return wallet
+    return new types.Wallet()._deserialize(res.data)
   }
 
   async getAddress() {
     const {address} = await this.getWallet()
-    this.emit('getAddress', address)
     return address
   }
 
   async getBalance() {
     const {balance} = await this.getWallet()
-    this.emit('getBalance', balance)
     return balance
   }
 
   async getSendable() {
     const {sendable} = await this.getWallet()
-    this.emit('getSendable', sendable)
     return sendable
   }
 
   async getOldAddresses() {
     const {oldAddresses} = await this.getWallet()
-    this.emit('getOldAddresses', oldAddresses)
     return oldAddresses
   }
 
   async getReceivedTransactions() {
     const {receivedTransactions} = await this.getWallet()
-    this.emit('getReceivedTransactions', receivedTransactions)
     return receivedTransactions
   }
 
   async getSentTransactions() {
     const {sentTransactions} = await this.getWallet()
-    this.emit('getSentTransactions', sentTransactions)
     return sentTransactions
   }
 
   async sendBtc(...args) {
     const data = new hooks.SendBtc(...args)
     await this._request('/api/wallet-send/', data, 'POST')
-    this.emit('sendBtc', data)
     return data
   }
 }

@@ -33,10 +33,6 @@ try {
     default: throw e  
   }
 }
-
-// Events
-btc.on(method, ...args)
-btc.once(method, ...args)
 ```
 ## Methods
 ### getAccountInfo(username)
