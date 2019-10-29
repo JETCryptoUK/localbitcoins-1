@@ -1,6 +1,6 @@
 {
   "name": "@darkwolf/localbitcoins",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "LocalBitcoins API",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/darkwolf/localbitcoins#readme",
   "dependencies": {
-    "@darkwolf/code-error": "^2.0.3",
+    "@darkwolf/code-error": "^2.0.8",
     "node-fetch": "^2.6.0"
   }
 }

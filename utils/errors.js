@@ -1,8 +1,12 @@
 const CodeError = require('@darkwolf/code-error')
 
 class LocalBitcoinsError extends CodeError {
-  constructor(...args) {
-    super('localbitcoins', ...args)
+  constructor(code, message) {
+    super({
+      namespace: 'localbitcoins',
+      code,
+      message
+    })
   }
 }
 
